@@ -85,3 +85,11 @@
 
 	status = "ok";
 };
+
+&pm660_l12 {
+	regulator-boot-on;
+};
+
+&lt9611_vcc_eldo {
+	regulator-boot-on;
+};

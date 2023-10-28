@@ -769,6 +769,11 @@ static ssize_t devkmsg_write(struct kiocb *iocb, struct iov_iter *from)
 		}
 	}
 
+	if (strncmp("healthd", line, 7) == 0) {
+		kfree(buf);
+		return len;
+	}
+
 	printk_emit(facility, level, NULL, 0, "%s", line);
 	kfree(buf);
 	return ret;
@@ -2119,7 +2124,6 @@ void suspend_console(void)
 {
 	if (!console_suspend_enabled)
 		return;
-	printk("Suspending console(s) (use no_console_suspend to debug)\n");
 	console_lock();
 	console_suspended = 1;
 	up_console_sem();

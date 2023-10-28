@@ -1875,7 +1875,7 @@ static int msm_dwc3_usbdev_notify(struct notifier_block *self,
 	}
 
 	mdwc->hc_died = true;
-	queue_delayed_work(system_freezable_wq, &mdwc->sm_work, 0);
+	schedule_delayed_work(&mdwc->sm_work, 0);
 	return 0;
 }
 
@@ -2696,7 +2696,7 @@ static int dwc3_msm_suspend(struct dwc3_msm *mdwc, bool hibernation)
 		mdwc->lpm_flags |= MDWC3_ASYNC_IRQ_WAKE_CAPABILITY;
 	}
 
-	dev_info(mdwc->dev, "DWC3 in low power mode\n");
+	dev_dbg(mdwc->dev, "DWC3 in low power mode\n");
 	dbg_event(0xFF, "Ctl Sus", atomic_read(&dwc->in_lpm));
 
 	/* kick_sm if it is waiting for lpm sequence to finish */
@@ -3799,7 +3799,7 @@ static int dwc3_msm_probe(struct platform_device *pdev)
 	if (of_get_property(pdev->dev.of_node, "qcom,usb-dbm", NULL)) {
 		mdwc->dbm = usb_get_dbm_by_phandle(&pdev->dev, "qcom,usb-dbm");
 		if (IS_ERR(mdwc->dbm)) {
-			dev_err(&pdev->dev, "unable to get dbm device\n");
+			dev_dbg(&pdev->dev, "unable to get dbm device\n");
 			ret = -EPROBE_DEFER;
 			goto err;
 		}

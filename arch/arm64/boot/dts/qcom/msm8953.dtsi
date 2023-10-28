@@ -907,7 +907,7 @@
 		#clock-cells = <1>;
 	};
 
-	clock_cpu: qcom,cpu-clock-8953@b116000 {
+	clock_cpu: qcom,cpu-clock-8953@b114000 {
 		compatible = "qcom,cpu-clock-8953";
 		reg =	 <0xb114000  0x68>,
 			 <0xb014000  0x68>,
@@ -1064,7 +1064,7 @@
 			<  7104 /*  931.2 MHz */ >;     /* TURBO */
 	};
 
-	qcom,cpu-bwmon {
+	qcom,cpu-bwmon@408000 {
 		compatible = "qcom,bimc-bwmon2";
 		reg = <0x408000 0x300>, <0x401000 0x200>;
 		reg-names = "base", "global_base";
