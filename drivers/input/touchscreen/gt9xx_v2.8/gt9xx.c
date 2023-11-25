@@ -2328,6 +2328,9 @@ static void gtp_resume(struct goodix_ts_data *ts)
 
 	dev_info(&ts->client->dev, "Try resume from sleep mode\n");
 
+        if (GTP_gesture_func_on)
+		disable_irq(ts->client->irq);
+
 	gtp_work_control_enable(ts, false);
 
 	if (ts->pdata->slide_wakeup && test_bit(DOZE_MODE, &ts->flags)) {
