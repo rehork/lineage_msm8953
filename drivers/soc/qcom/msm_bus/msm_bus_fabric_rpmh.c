@@ -1728,7 +1728,7 @@ static int msm_bus_device_probe(struct platform_device *pdev)
 	unsigned int i = 1, ret;
 	struct msm_bus_device_node_registration *pdata;
 
-	MSM_BUS_ERR("msm_bus: Probe started\n");
+	MSM_BUS_DBG("msm_bus: Probe started\n");
 	/* If possible, get pdata from device-tree */
 	if (pdev->dev.of_node)
 		pdata = msm_bus_of_to_pdata(pdev);
@@ -1737,7 +1737,7 @@ static int msm_bus_device_probe(struct platform_device *pdev)
 			dev.platform_data;
 	}
 
-	MSM_BUS_ERR("msm_bus: DT Parsing complete\n");
+	MSM_BUS_DBG("msm_bus: DT Parsing complete\n");
 
 	if (IS_ERR_OR_NULL(pdata)) {
 		MSM_BUS_ERR("No platform data found");
